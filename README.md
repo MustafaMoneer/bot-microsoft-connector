@@ -45,7 +45,7 @@ git clone https://github.com/hcherchi/Starter-Kit-Microsoft-bot-connector.git
 
 * Fill the config.js with your Tokens
 
-```
+```javascript
 const config =
 {
 	recast: {
