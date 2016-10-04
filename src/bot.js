@@ -21,12 +21,19 @@ bot.dialog('/', (session) => {
   recastClient.converse(text, config.recast.language, session.message.address.conversation.id)
   .then((res) => {
     const action = res.action()
-    const reply = res.reply()
+    const replies = res.replies()
 
-    if (action.done) {
-      console.log('Action is done!')
+    console.log(`The action of this message is: ${action.slug}`)
+
+    if (replies[0]) {
+      console.log('current action has a reply')
+      session.send(replies[0])
     }
-    session.send(reply)
+
+    if (action.done && replies[1]) {
+      console.log('Action is done && next action has a reply')
+      session.send(replies[1])
+    }
   })
   .catch(() => {
     session.send('I need some sleep right now... Talk to me later!')

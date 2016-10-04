@@ -74,6 +74,45 @@ npm install
 npm run start
 ```
 
+## Go further
+
+Here is the heart of your bot, this function is called everytime your bot receive a message.
+'res' is full of precious informations:
+
+* use res.get('nameOfEntity') to extract an entity like a mail, a datetime etc...
+* use res.action() to get the current action according to your botbuilder schema
+* in action, you can find a done boolean to know if this action can be done according to the requirements (ex: signin needs login)
+* use res.reply() to get the reply you've set for this action
+* use res.replies() to get an array containing the reply set for the action && the following one if the next action can be done
+* use res.nextActions() to get an array of all the following actions
+
+```javascript
+bot.dialog('/', (session) => {
+
+  const text = session.message.text
+  recastClient.converse(text, config.recast.language, session.message.address.conversation.id)
+  .then((res) => {
+    const action = res.action()
+    const replies = res.replies()
+
+    console.log(`The action of this message is: ${action.slug}`)
+
+    if (replies[0]) {
+      console.log('current action has a reply')
+      session.send(replies[0])
+    }
+
+    if (action.done && replies[1]) {
+      console.log('Action is done && next action has a reply')
+      session.send(replies[1])
+    }
+  })
+  .catch(() => {
+    session.send('I need some sleep right now... Talk to me later!')
+  })
+})
+```
+
 ## Author
 
 Hugo Cherchi - Recast.AI hugo.cherchi@recast.ai
