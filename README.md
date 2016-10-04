@@ -90,13 +90,19 @@ Here is the heart of your bot, this function is called everytime your bot receiv
 bot.dialog('/', (session) => {
 
   const text = session.message.text
-  recastClient.converse(text, config.recast.language, session.message.address.conversation.id)
+  recastClient.converse(text, { language: config.recast.language, converseToken: session.message.address.conversation.id })
   .then((res) => {
     const action = res.action()
     const replies = res.replies()
 
     console.log(`The action of this message is: ${action.slug}`)
 
+		if (!action) {
+			console.log('No action')
+			session.send('I didn\'t understand... Sorry :(')
+			return
+		}
+		
     if (replies[0]) {
       console.log('current action has a reply')
       session.send(replies[0])

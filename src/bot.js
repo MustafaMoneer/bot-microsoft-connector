@@ -18,11 +18,16 @@ const bot = new builder.UniversalBot(connector)
 bot.dialog('/', (session) => {
 
   const text = session.message.text
-  recastClient.converse(text, config.recast.language, session.message.address.conversation.id)
+  recastClient.converse(text, { language: config.recast.language, converseToken: session.message.address.conversation.id })
   .then((res) => {
-    const action = res.action()
-    const replies = res.replies()
+    const action = res.action
+    const replies = res.replies
 
+    if (!action) {
+      console.log('No action')
+      session.send('I didn\'t understand... Sorry :(')
+      return
+    }
     console.log(`The action of this message is: ${action.slug}`)
 
     if (replies[0]) {
