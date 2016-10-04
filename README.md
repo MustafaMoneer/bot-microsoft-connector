@@ -73,3 +73,9 @@ npm install
 ```
 npm run start
 ```
+
+## Author
+
+Hugo Cherchi - Recast.AI hugo.cherchi@recast.ai
+
+You can follow us on Twitter at @recastai for updates and releases.
