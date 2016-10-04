@@ -1,0 +1,30 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "A starter kit for making a bot connected with microsoft bot connector",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ./node_modules/babel-cli/bin/babel-node.js src/bot.js",
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "author": "hcherchi",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.11.6",
+    "botbuilder": "^3.1.1",
+    "recastai": "^1.0.2",
+    "restify": "^4.1.1"
+  },
+  "devDependencies": {
+    "request-promise": "^4.1.1"
+  }
+}
