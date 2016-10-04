@@ -9,14 +9,6 @@ This Starter Kit will help you start coding a bot connected to Microsoft Bot con
 * Create accounts on messaging applications handled by Microsoft Bot Platform(Slack, Messenger, Kik...)
 * Set up your Recast.AI account
 
-## Set up a Bot
-
-* Log in to your Recast.AI account
-* Create your Bot
-* Create intents and fill them with some expressions
-* Build your tree on BotBuilder in the 'Build' tab
-
-
 ## Get your Recast Bot Token
 
 * Log in to your Recast.AI account
