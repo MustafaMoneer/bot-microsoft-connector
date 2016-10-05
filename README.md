@@ -96,7 +96,7 @@ For more information, please read the [SDK NodeJS documentation](https://github.
 bot.dialog('/', (session) => {
   const text = session.message.text
 
-  // CALL TO RECAST.AI: session.message.address.conversation.id contains a unique ID of your conversation in Slack
+  // CALL TO RECAST.AI: session.message.address.conversation.id contains a unique ID of your conversation
   // The converseToken is what lets Recast.AI identify your conversation.
   // As session.message.address.conversation.id is what identifies your Slack conversation, you can use it as converseToken.
 
