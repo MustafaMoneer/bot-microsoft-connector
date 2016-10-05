@@ -105,7 +105,7 @@ bot.dialog('/', (session) => {
       return
     }
 
-    if (action.done) {
+    if (action && action.done) {
       // Use external services: use res.memory('knowledge') if you got a knowledge from this action
     }
 
