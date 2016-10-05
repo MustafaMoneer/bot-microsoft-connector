@@ -35,7 +35,7 @@ Problem: the server will be running locally (no url) That’s why you will use n
 * run it with `./ngrok http 8080`
 * Copy and paste the secured url (https) on the endpoint field of your bot in Microsoft Bot Framework
 
-![Ngrok](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-ngrok-console.png)
+	![Ngrok](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-ngrok-console.png)
 
 ## Launch the bot
 
