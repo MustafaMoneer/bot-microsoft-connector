@@ -4,7 +4,7 @@
   "description": "A starter kit for making a bot connected with microsoft bot connector",
   "main": "src/server.js",
   "scripts": {
-    "start": "node ./node_modules/babel-cli/bin/babel-node.js src/bot.js",
+    "start": "node ./node_modules/babel-cli/bin/babel-node.js src/bot.js"
   },
   "babel": {
     "presets": [

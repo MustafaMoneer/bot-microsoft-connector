@@ -100,7 +100,7 @@ bot.dialog('/', (session) => {
   // The converseToken is what lets Recast.AI identify your conversation.
   // As session.message.address.conversation.id is what identifies your conversation with the channel used, you can use it as converseToken.
 
-  recastClient.converse(text, { converseToken: session.message.address.conversation.id })
+  recastClient.textConverse(text, { converseToken: session.message.address.conversation.id })
   .then((res) => {
     const replies = res.replies
     const action = res.action
