@@ -18,9 +18,9 @@ const bot = new builder.UniversalBot(connector)
 bot.dialog('/', (session) => {
   const text = session.message.text
 
-  // CALL TO RECAST.AI: message.user contain a unique Id of your conversation in Slack
+  // CALL TO RECAST.AI: session.message.address.conversation.id contain a unique Id of your conversation in Slack
   // The converseToken is what let Recast identify your conversation.
-  // As message.user is what identify your slack conversation, you can use it as converseToken.
+  // As session.message.address.conversation.id is what identify your slack conversation, you can use it as converseToken.
 
   recastClient.converse(text, { converseToken: session.message.address.conversation.id })
   .then((res) => {
