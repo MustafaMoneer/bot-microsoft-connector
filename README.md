@@ -55,7 +55,7 @@ const config =
 	microsoft: {
 		AppId: 'MICROSOFT APP ID',
 		Secret: 'MICROSOFT APP SECRET',
-	}
+	},
 	port: 8080,
 }
 ```
@@ -79,12 +79,12 @@ npm run start
 Here is the heart of your bot, this function is called everytime your bot receive a message.
 'res' is full of precious informations:
 
-* use *res.memory('alias')* to read an entity you just got in the input like a mail, a datetime etc...
-* use *res.action* to get the current action according to your botbuilder schema
-* in *action*, you can find a done boolean to know if this action can be done according to the requirements (ex: signin needs login)
-* use *res.reply()* to get the reply you've set for this action
-* use *res.replies* to get an array containing the reply set for the action && the following one if the next action can be done
-* use *res.nextActions* to get an array of all the following actions
+* use **res.memory('alias')** to read an entity you just got in the input like a mail, a datetime etc...
+* use **res.action** to get the current action according to your botbuilder schema
+* in **action**, you can find a done boolean to know if this action can be done according to the requirements (ex: signin needs login)
+* use **res.reply()** to get the reply you've set for this action
+* use **res.replies** to get an array containing the reply set for the action && the following one if the next action can be done
+* use **res.nextActions** to get an array of all the following actions
 
 ```javascript
 bot.dialog('/', (session) => {
