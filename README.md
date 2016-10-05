@@ -1,16 +1,16 @@
 # Start coding your bot: Recast.AI + Microsoft Bot Connector
 
-This Starter Kit will help you start coding a bot connected to Microsoft Bot connector with [Recast.AI](https://recast.ai/).
+This Starter Kit will help you start coding a bot connected to Microsoft Bot connector with [Recast.AI](https://recast.ai).
 
 ## Requirements
 
-* Create an account on Recast.AI
-* Create an account on Microsoft Bot Framework
-* Create accounts on messaging applications handled by Microsoft Bot Platform(Slack, Messenger, Kik...)
+* Create an account on [Recast.AI](https://recast.ai)
+* Create an account on [Microsoft Bot Framework](https://dev.botframework.com)
+* Create accounts on messaging applications available on Microsoft Bot Platform (Slack, Messenger, Kik...)
 
-## Get your Recast Bot Token
+## Get your Recast.AI bot token
 
-* Log in to your Recast.AI account
+* Log in to your [Recast.AI](https://recast.ai/) account
 * Create your Bot
 * Create intents and fill them with some expressions
 * Build your conversation flow on bot builder in the 'Build' tab
@@ -20,29 +20,29 @@ This Starter Kit will help you start coding a bot connected to Microsoft Bot con
 ## Get your Microsoft secret
 
 * Create an account on [Microsoft Bot Framework](https://dev.botframework.com/)
-* Create a new Bot and follow the procedure. The Endpoint Url you have to put will be explain later.
-* Get your Secret and AppId that will be usefull later
-* Follow the differents steps for every channel you want to add.
+* Create a new bot and follow the procedure. The endpoint url you have to put will be explained later.
+* Get your app secret and app ID that will be useful later
+* Follow the different steps for every channel you want to add.
 
-## Put your local server Online
+## Put your local server online
 
 ```
 ./ngrok http 8080
 ```
 
-this terminal is now used by ngrok and you can see your full Url that is required on microsoft bot Platform
+This terminal is now used by ngrok and you can see your url required on Microsoft Bot Platform
 
-## Launch the Bot
+## Launch the bot
 
-#### Complete the config.js
+#### Complete the config.js file
 
-* Clone this Repository
+* Clone this repository
 
 ```
 git clone https://github.com/hcherchi/Starter-Kit-Microsoft-bot-connector.git
 ```
 
-* Fill the config.js with your Tokens
+* Fill the config.js with your tokens
 
 ```javascript
 const config =
@@ -52,8 +52,8 @@ const config =
 		language: 'en',
 	},
 	microsoft: {
-		AppId: 'MICROSOFT APP ID',
-		Secret: 'MICROSOFT APP SECRET',
+		appId: 'MICROSOFT APP ID',
+		secret: 'MICROSOFT APP SECRET',
 	},
 	port: 8080,
 }
@@ -75,14 +75,14 @@ npm run start
 
 ## Go further
 
-Here is the heart of your bot, this function is called everytime your bot receive a message.
-'res' is full of precious informations:
+Here is the heart of your bot. The following function is called every time your bot receives a message.
+'res' is full of precious information:
 
-* use **res.memory('knowledge')** to access a knowledge you just got in the input like a mail, a datetime etc...
+* use **res.memory('knowledge')** to access a knowledge you just got in the input like a email address, a datetime etc...
 * use **res.action** to get the current action according to your bot builder flow
 * in **action**, you can find a done boolean to know if this action is complete according to the requirements (ex: booking need to signin, signin needs a login)
 * use **res.reply()** to get the reply you've set for this action
-* use **res.replies** to get an array containing the reply set for the action && the following one if the next action can be done
+* use **res.replies** to get an array containing the reply set for the action && the following one if the next action is complete
 * use **res.nextActions** to get an array of all the following actions
 
 For more information, please read the [SDK NodeJS documentation](https://github.com/RecastAI/SDK-NodeJS)
@@ -91,9 +91,9 @@ For more information, please read the [SDK NodeJS documentation](https://github.
 bot.dialog('/', (session) => {
   const text = session.message.text
 
-  // CALL TO RECAST.AI: message.user contain a unique Id of your conversation in Slack
-  // The converseToken is what let Recast identify your conversation.
-  // As message.user is what identify your slack conversation, you can use it as converseToken.
+  // CALL TO RECAST.AI: message.user contains a unique ID of your conversation in Slack
+  // The converseToken is what lets Recast.AI identify your conversation.
+  // As message.user is what identifies your Slack conversation, you can use it as converseToken.
 
   recastClient.converse(text, { converseToken: session.message.address.conversation.id })
   .then((res) => {
