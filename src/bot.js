@@ -4,7 +4,7 @@ const restify = require('restify')
 const builder = require('botbuilder')
 const config = require('../config.js')
 
-// RECAST.AI INIT
+// RECAST.AI INIT: Language is optionnal
 const recastClient = new recast.Client(config.recast.token, config.recast.language)
 
 // CONNECTION TO MICROSOFT BOT
@@ -14,31 +14,29 @@ const connector = new builder.ChatConnector({
 })
 const bot = new builder.UniversalBot(connector)
 
-// MESSAGE RECEIVED
+// EVENT: message received on Microsoft
 bot.dialog('/', (session) => {
-
   const text = session.message.text
-  recastClient.converse(text, { language: config.recast.language, converseToken: session.message.address.conversation.id })
-  .then((res) => {
-    const action = res.action
-    const replies = res.replies
 
-    if (!action) {
-      console.log('No action')
+  // CALL TO RECAST.AI: message.user contain a unique Id of your conversation in Slack
+  // The converseToken is what let Recast identify your conversation.
+  // As message.user is what identify your slack conversation, you can use it as converseToken.
+
+  recastClient.converse(text, { converseToken: session.message.address.conversation.id })
+  .then((res) => {
+    const replies = res.replies
+    const action = res.action
+
+    if (!replies.length) {
       session.send('I didn\'t understand... Sorry :(')
       return
     }
-    console.log(`The action of this message is: ${action.slug}`)
 
-    if (replies[0]) {
-      console.log('current action has a reply')
-      session.send(replies[0])
+    if (action.done) {
+      // Use external services: use res.memory('knowledge') if you got a knowledge from this action
     }
 
-    if (action.done && replies[1]) {
-      console.log('Action is done && next action has a reply')
-      session.send(replies[1])
-    }
+    replies.forEach(reply => session.send(reply))
   })
   .catch(() => {
     session.send('I need some sleep right now... Talk to me later!')

@@ -1,20 +1,19 @@
-# Start coding your bot with Microsoft Bot Connector
+# Start coding your bot: Recast.AI + Microsoft Bot Connector
 
-This Starter Kit will help you start coding a bot connected to Microsoft Bot connector with Recast.AI.
+This Starter Kit will help you start coding a bot connected to Microsoft Bot connector with [Recast.AI](https://recast.ai/).
 
 ## Requirements
 
 * Create an account on Recast.AI
 * Create an account on Microsoft Bot Framework
 * Create accounts on messaging applications handled by Microsoft Bot Platform(Slack, Messenger, Kik...)
-* Set up your Recast.AI account
 
 ## Get your Recast Bot Token
 
 * Log in to your Recast.AI account
 * Create your Bot
 * Create intents and fill them with some expressions
-* Build your tree on BotBuilder in the 'Build' tab
+* Build your conversation flow on bot builder in the 'Build' tab
 * In the tab menu, click on the the little screw
 * Here is the `request access token` you will need to configure your bot!
 
@@ -79,39 +78,38 @@ npm run start
 Here is the heart of your bot, this function is called everytime your bot receive a message.
 'res' is full of precious informations:
 
-* use **res.memory('alias')** to read an entity you just got in the input like a mail, a datetime etc...
-* use **res.action** to get the current action according to your botbuilder schema
-* in **action**, you can find a done boolean to know if this action can be done according to the requirements (ex: signin needs login)
+* use **res.memory('knowledge')** to access a knowledge you just got in the input like a mail, a datetime etc...
+* use **res.action** to get the current action according to your bot builder flow
+* in **action**, you can find a done boolean to know if this action is complete according to the requirements (ex: booking need to signin, signin needs a login)
 * use **res.reply()** to get the reply you've set for this action
 * use **res.replies** to get an array containing the reply set for the action && the following one if the next action can be done
 * use **res.nextActions** to get an array of all the following actions
 
+For more information, please read the [SDK NodeJS documentation](https://github.com/RecastAI/SDK-NodeJS)
+
 ```javascript
 bot.dialog('/', (session) => {
-
   const text = session.message.text
-  recastClient.converse(text, { language: config.recast.language, converseToken: session.message.address.conversation.id })
+
+  // CALL TO RECAST.AI: message.user contain a unique Id of your conversation in Slack
+  // The converseToken is what let Recast identify your conversation.
+  // As message.user is what identify your slack conversation, you can use it as converseToken.
+
+  recastClient.converse(text, { converseToken: session.message.address.conversation.id })
   .then((res) => {
-    const action = res.action()
-    const replies = res.replies()
+    const replies = res.replies
+    const action = res.action
 
-    console.log(`The action of this message is: ${action.slug}`)
-
-    if (!action) {
-      console.log('No action')
+    if (!replies.length) {
       session.send('I didn\'t understand... Sorry :(')
       return
     }
 
-    if (replies[0]) {
-      console.log('current action has a reply')
-      session.send(replies[0])
+    if (action.done) {
+      // Use external services: use res.memory('knowledge') if you got a knowledge from this action
     }
 
-    if (action.done && replies[1]) {
-      console.log('Action is done && next action has a reply')
-      session.send(replies[1])
-    }
+    replies.forEach(reply => session.send(reply))
   })
   .catch(() => {
     session.send('I need some sleep right now... Talk to me later!')
@@ -124,3 +122,13 @@ bot.dialog('/', (session) => {
 Hugo Cherchi - Recast.AI hugo.cherchi@recast.ai
 
 You can follow us on Twitter at @recastai for updates and releases.
+
+## License
+
+Copyright (c) [2016] [Recast.AI](https://recast.ai/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
