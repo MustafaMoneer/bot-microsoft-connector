@@ -22,7 +22,9 @@ This Starter Kit will help you start coding a bot connected to Microsoft Bot con
 * Create an account on [Microsoft Bot Framework](https://dev.botframework.com/)
 * Create a new bot and follow the procedure. The endpoint url you have to put will be explained later.
 * Get your app secret and app ID that will be useful later
+	![Microsoft](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-microsoft-bot-creation.png)
 * Follow the different steps for every channel you want to add.
+	![Channels](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-messenger-connect.png)
 
 ## Put your local server online with Ngrok
 
