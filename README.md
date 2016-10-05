@@ -24,9 +24,7 @@ This Starter Kit will help you start coding a bot connected to Microsoft Bot con
 * Get your app secret and app ID that will be useful later
 * Follow the different steps for every channel you want to add.
 
-## Put your local server online
-
-#### Set up ngrok
+## Put your local server online with Ngrok
 
 Whenever the bot receives a message on Microsoft Bot Platform, it will be sent to the server running on the endpoint url specified on Microsoft Bot Platform.
 Problem: the server will be running locally (no url) That’s why you will use ngrok which make a local server run online.
@@ -35,7 +33,7 @@ Problem: the server will be running locally (no url) That’s why you will use n
 * run it with `./ngrok http 8080`
 * Copy and paste the secured url (https) on the endpoint field of your bot in Microsoft Bot Framework
 
-[Ngrok](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-ngrok-console.png)
+![Ngrok](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-ngrok-console.png)
 
 ## Launch the bot
 
