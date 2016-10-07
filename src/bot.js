@@ -19,10 +19,10 @@ bot.dialog('/', (session) => {
   const text = session.message.text
 
   // CALL TO RECAST.AI: session.message.address.conversation.id contain a unique Id of your conversation with the channel used
-  // The conversationToken is what let Recast identify your conversation.
-  // As session.message.address.conversation.id is what identify your conversation with the channel used, you can use it as conversationToken.
+  // The conversation_token is what let Recast identify your conversation.
+  // As session.message.address.conversation.id is what identify your conversation with the channel used, you can use it as conversation_token.
 
-  recastClient.textConverse(text, { conversationToken: session.message.address.conversation.id })
+  recastClient.textConverse(text, { conversation_token: session.message.address.conversation.id })
   .then((res) => {
     const replies = res.replies
     const action = res.action
