@@ -32,7 +32,7 @@ bot.dialog('/', (session) => {
     }
 
     if (action && action.done) {
-      // Use external services: use res.memory('knowledge') if you got a knowledge from this action
+      // Use external services: use res.memory('notion') if you got a notion from this action
     }
 
     replies.forEach(reply => session.send(reply))
