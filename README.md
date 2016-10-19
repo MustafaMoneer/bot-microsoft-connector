@@ -21,7 +21,7 @@ This Starter Kit will help you start coding a bot connected to Microsoft Bot con
 
 * Create an account on [Microsoft Bot Framework](https://dev.botframework.com/)
 * Create a new bot and follow the procedure. The endpoint url you have to put will be explained later.
-* Get your app secret and app ID that will be useful later
+* Get your app password and app ID that will be useful later
 	![Microsoft](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-microsoft-bot-creation.png)
 * Follow the different steps for every channel you want to add.
 	![Channels](https://github.com/RecastAI/Pokebot/raw/master/pictures/recast-ai-messenger-connect.png)
@@ -44,7 +44,7 @@ Problem: the server will be running locally (no url) That’s why you will use n
 * Clone this repository
 
 ```
-git clone https://github.com/hcherchi/Starter-Kit-Microsoft-bot-connector.git
+git clone https://github.com/RecastAI/bot-microsoft-connector.git
 ```
 
 * Fill the config.js with your tokens
@@ -58,7 +58,7 @@ const config =
 	},
 	microsoft: {
 		appId: 'MICROSOFT APP ID',
-		secret: 'MICROSOFT APP SECRET',
+		appPassword: 'MICROSOFT APP PASSWORD',
 	},
 	port: 8080,
 }
@@ -73,6 +73,10 @@ npm install
 ```
 
 * run your bot
+
+```
+cd bot-microsoft-connector
+```
 
 ```
 npm run start

@@ -10,7 +10,7 @@ const recastClient = new recast.Client(config.recast.token, config.recast.langua
 // CONNECTION TO MICROSOFT BOT
 const connector = new builder.ChatConnector({
   appId: config.microsoft.appId,
-  appPassword: config.microsoft.secret,
+  appPassword: config.microsoft.appPassword,
 })
 const bot = new builder.UniversalBot(connector)
 

@@ -5,7 +5,7 @@ const config = {
   },
   microsoft: {
     appId: 'MICROSOFT APP ID',
-    secret: 'MICROSOFT APP SECRET',
+    appPassword: 'MICROSOFT APP PASSWORD',
   },
   port: 8080,
 }
