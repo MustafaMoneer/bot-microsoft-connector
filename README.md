@@ -69,14 +69,13 @@ const config =
 * install the dependencies
 
 ```
+cd bot-microsoft-connector
+```
+```
 npm install
 ```
 
 * run your bot
-
-```
-cd bot-microsoft-connector
-```
 
 ```
 npm run start
